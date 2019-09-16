@@ -72,6 +72,8 @@ class _CircleProgressState extends State<CircleProgressBar>
       onPanEnd: _onPanEnd,
       child: Container(
         alignment: FractionalOffset.center,
+
+        ///绘制
         child: CustomPaint(
           key: paintKey,
           size: size,
@@ -175,7 +177,13 @@ class ProgressPainter extends CustomPainter {
 //    canvas.drawCircle(offsetCenter, outerRadius, shadowPaint);
 //    canvas.drawCircle(offsetCenter, innerRadius, shadowPaint);
 
-    Path path = Path.combine(PathOperation.difference, Path()..addOval(Rect.fromCircle(center: offsetCenter, radius: outerRadius)), Path()..addOval(Rect.fromCircle(center: offsetCenter, radius: innerRadius)));
+    Path path = Path.combine(
+        PathOperation.difference,
+        Path()
+          ..addOval(Rect.fromCircle(center: offsetCenter, radius: outerRadius)),
+        Path()
+          ..addOval(
+              Rect.fromCircle(center: offsetCenter, radius: innerRadius)));
     canvas.drawShadow(path, shadowColor, 4.0, true);
 
     // draw ring.
@@ -210,8 +218,7 @@ class ProgressPainter extends CustomPainter {
           ..strokeCap = StrokeCap.round
           ..strokeWidth = progressWidth
           ..shader = gradient.createShader(arcRect);
-        canvas.drawArc(
-            arcRect, offset, radians - offset, false, progressPaint);
+        canvas.drawArc(arcRect, offset, radians - offset, false, progressPaint);
         canvas.restore();
       }
     }

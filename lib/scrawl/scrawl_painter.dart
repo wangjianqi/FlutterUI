@@ -10,6 +10,7 @@ class Point {
   Point(this.color, this.strokeWidth, this.points);
 }
 
+///绘制
 class ScrawlPainter extends CustomPainter {
   final double strokeWidth;
   final Color strokeColor;
@@ -29,6 +30,7 @@ class ScrawlPainter extends CustomPainter {
       ..strokeCap = StrokeCap.round;
   }
 
+  ///实现paint
   void paint(Canvas canvas, Size size) {
     if (isClear || points == null || points.length == 0) {
       return;
@@ -43,7 +45,7 @@ class ScrawlPainter extends CustomPainter {
       for (int i = 0; i < curPoints.length - 1; i++) {
         if (curPoints[i] != null && curPoints[i + 1] != null)
           canvas.drawLine(curPoints[i], curPoints[i + 1], _linePaint);
-//      canvas.drawPoints(PointMode.polygon, curPoints, _linePaint);
+//          canvas.drawPoints(PointMode.polygon, curPoints, _linePaint);
       }
     }
   }

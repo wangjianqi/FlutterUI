@@ -20,6 +20,7 @@ class _ScrawlState extends State<ScrawlPage> {
   File imageFile;
   int selectedLine = 0;
   Color selectedColor = colors[0];
+  ///存放Point
   List<Point> points = [Point(colors[0], lineWidths[0], [])];
   int curFrame = 0;
   bool isClear = false;
@@ -54,6 +55,7 @@ class _ScrawlState extends State<ScrawlPage> {
                     child: Stack(
                       alignment: Alignment.center,
                       children: <Widget>[
+                        ///图片文件
                         (imageFile == null)
                             ? Image.asset('images/girl03.png')
                             : Image.file(imageFile),
@@ -94,7 +96,9 @@ class _ScrawlState extends State<ScrawlPage> {
             points[curFrame].strokeWidth = strokeWidth;
           },
           onPanUpdate: (details) {
+            ///renderBox
             RenderBox referenceBox = context.findRenderObject();
+            ///定位位置
             Offset localPosition =
                 referenceBox.globalToLocal(details.globalPosition);
             state(() {

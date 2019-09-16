@@ -42,6 +42,7 @@ Future saveScreenShot2SDCard(RenderRepaintBoundary boundary,
   });
 }
 
+///截屏
 void saveScreenShot(RenderRepaintBoundary boundary,
     {Function success, Function fail}) {
   capturePng2List(boundary).then((uint8List) async {
@@ -49,12 +50,14 @@ void saveScreenShot(RenderRepaintBoundary boundary,
       if (fail != null) fail();
       return;
     }
+    ///获取文件夹
     Directory tempDir = await getTemporaryDirectory();
     _saveImage(uint8List, tempDir, scrawlImagePath,
         success: success, fail: fail);
   });
 }
 
+///保存图片
 void _saveImage(Uint8List uint8List, Directory dir, String fileName,
     {Function success, Function fail}) async {
   bool isDirExist = await Directory(dir.path).exists();
@@ -63,14 +66,17 @@ void _saveImage(Uint8List uint8List, Directory dir, String fileName,
   File image = File(tempPath);
   bool isExist = await image.exists();
   if (isExist) await image.delete();
+  ///写入文件
   File(tempPath).writeAsBytes(uint8List).then((_) {
     if (success != null) success();
   });
 }
 
+///获取图片
 Future<Uint8List> capturePng2List(RenderRepaintBoundary boundary) async {
   ui.Image image =
       await boundary.toImage(pixelRatio: ui.window.devicePixelRatio);
+  ///格式
   ByteData byteData = await image.toByteData(format: ui.ImageByteFormat.png);
   Uint8List pngBytes = byteData.buffer.asUint8List();
   return pngBytes;

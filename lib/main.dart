@@ -58,6 +58,7 @@ class MyApp extends StatelessWidget {
             UIRoute.circleProgressBar: (_) => ProgressBarPage(),
             UIRoute.likeButton: (_) => LikeButtonPage(),
             UIRoute.tipMenu: (_) => TipMenuPage(),
+            ///涂鸦
             UIRoute.scrawl: (_) => ContentPage(),
             UIRoute.circleFloatingMenu: (_) => FloatingMenuPage(),
             UIRoute.liquidCheck: (_) => LiquidCheckPage(),

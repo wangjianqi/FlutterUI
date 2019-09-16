@@ -15,6 +15,7 @@ class ContentPage extends StatelessWidget {
         title: Text('scrawl and watermark'),
       ),
       body: RepaintBoundary(
+        ///设置key
         key: _repaintKey,
         child: Container(
           color: Colors.white,
@@ -74,6 +75,7 @@ class ContentPage extends StatelessWidget {
         icon: Icon(Icons.add),
         label: Text('去涂鸦'),
         backgroundColor:
+            ///混合
             Color.alphaBlend(Colors.pinkAccent.withOpacity(0.8), Colors.white),
       ),
     );
